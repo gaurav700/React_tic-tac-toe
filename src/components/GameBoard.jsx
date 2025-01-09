@@ -40,6 +40,7 @@ export default function GameBoard({ onSelectSquare, turns /* , isActive*/ }) {
                         colIndex
                       ) /* () => handleClick(rowIndex, colIndex) */
                   }
+                  disabled={playerSymbol !== null}
                 >
                   {playerSymbol}
                 </button>
