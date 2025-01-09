@@ -24,7 +24,8 @@ function App() {
   // const [isActivePlayer, setIsActivePlayer] = useState("X");
   const isActivePlayer = derivedActivePlayer(gameTurns);
 
-  let gameBoard = [...initialGameBoard];
+  let gameBoard = [...initialGameBoard.map((innerArray) => [...innerArray])];
+
   for (const turn of gameTurns) {
     const { square, player } = turn;
     const { row, col } = square;
@@ -63,6 +64,11 @@ function App() {
       return updatedTurns;
     });
   }
+
+  function handleRestart() {
+    setGameTurns([]);
+  }
+
   return (
     <main>
       <h1>Tic-Tac-Toe</h1>
@@ -79,7 +85,9 @@ function App() {
             isActive={isActivePlayer === "O"}
           />
         </ol>
-        {(winner || hasDraw) && <GameOver winner={winner} />}
+        {(winner || hasDraw) && (
+          <GameOver winner={winner} OnRestart={handleRestart} />
+        )}
         <GameBoard onSelectSquare={handleSelectSquare} turns={gameTurns} />
       </div>
       <Log turns={gameTurns} />
