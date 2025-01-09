@@ -24,7 +24,7 @@ function App() {
   // const [isActivePlayer, setIsActivePlayer] = useState("X");
   const isActivePlayer = derivedActivePlayer(gameTurns);
 
-  let gameBoard = initialGameBoard;
+  let gameBoard = [...initialGameBoard];
   for (const turn of gameTurns) {
     const { square, player } = turn;
     const { row, col } = square;
